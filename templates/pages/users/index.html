@@ -1,0 +1,34 @@
+<%- include('../../layout/header.html') %>
+
+<header class="page-header">
+    <h2>
+        <%= title %>
+    </h2>
+    </header>
+
+    <div class="page-body">
+        <p>This is a users list</p>
+        <div class="page-body">
+            <!-- Verification of users -->
+            <% if (users.length===0) { %>
+
+                <p>No users found.</p>
+
+                <% } else { %>
+
+                    <!-- List of users -->
+                    <% users.forEach(user=> { %>
+                        <!-- href servira a afficher les infos en details des users si utilisé -->
+                        <!-- <a href="/users/<%= users.id %>"> -->
+                            <h3>
+                                <p><%= user.firstname %> <%= user.lastname %></p>
+                            </h3>
+                        <!-- </a> -->
+                    <% }); %>
+
+            <% } %>
+        </div>
+    </div>
+    </div>
+
+<%- include('../../layout/footer.html') %>
