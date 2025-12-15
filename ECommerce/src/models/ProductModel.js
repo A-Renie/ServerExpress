@@ -19,17 +19,11 @@ class ProductModel{
         return productList;
     }
 
-    // a améliorer pasque pas ouf
+    // a améliorer avec gestion d'erreur
     static async findById(id) {
-        let result = null
-
-        productList.forEach((product)=>{
-            if (product.id === id)
-                result = product
-        })
-
-        return result
+        return productList.find(product => product.id === Number(id)) || null;
     }
+
 
     static async create(data) {
         const newProduct = new ProductModel(currentId++, data?.name, data?.price ,data?.stock, data?.isActive )
