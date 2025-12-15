@@ -15,6 +15,7 @@ class ProductModel{
         this.isActive = isActive || true ;
     }
 
+    // a améliorer avec gestion d'erreur
     static async findAll() {
         return productList;
     }
@@ -24,13 +25,12 @@ class ProductModel{
         return productList.find(product => product.id === Number(id)) || null;
     }
 
-
+    // a améliorer avec gestion d'erreur
     static async create(data) {
         const newProduct = new ProductModel(data?.name, data?.price ,data?.stock, data?.isActive )
         productList.push(newProduct);
         return newProduct;
     }
-
 
 }
 
