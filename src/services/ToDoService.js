@@ -7,7 +7,7 @@ class TodoService {
     }
 
     static async createTodo(title) {
-        if (!title) {
+        if (!title || title.title.trim() === '') {
             return null;
         }
 
