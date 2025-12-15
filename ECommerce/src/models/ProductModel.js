@@ -4,10 +4,10 @@ let productList = [
     {id:3, name:"Produit 3", price:99.99, stock: 0, isActive:false},
 ]
 
-let currentId=3
+let currentId = 3
 
 class ProductModel{
-    constructor(id,name,price,stock,isActive){
+    constructor(name,price,stock,isActive) {
         this.id = currentId ++ ;
         this.name = name || null ;
         this.price = price || 0 ;
@@ -26,7 +26,7 @@ class ProductModel{
 
 
     static async create(data) {
-        const newProduct = new ProductModel(currentId++, data?.name, data?.price ,data?.stock, data?.isActive )
+        const newProduct = new ProductModel(data?.name, data?.price ,data?.stock, data?.isActive )
         productList.push(newProduct);
         return newProduct;
     }
