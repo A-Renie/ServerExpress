@@ -1,4 +1,5 @@
 const TodoModel = require('../models/ToDoModel');
+const { ValidationError, NotFoundError } = require('../errors/ApiError');
 
 class TodoService {
 
@@ -8,7 +9,7 @@ class TodoService {
 
     static async createTodo(title) {
         if (!title || title.title.trim() === '') {
-            return null;
+            throw new ValidationError("Le message ne peut pas etre vide");
         }
 
         return TodoModel.create(title);
