@@ -17,6 +17,12 @@ module.exports = new EntitySchema({
         updatedAt: { updateDate: true, type: "datetime" },
     },
     relations: {
-        // ajouter les to do et relations après
+        todos: {
+            type: "one-to-many",
+            target: "Todo",
+            inverseSide: "user", // Le nom de la propriété en face
+            cascade: true // Si true: sauver User sauve aussi ses Todos
+        }
+
     }
 });

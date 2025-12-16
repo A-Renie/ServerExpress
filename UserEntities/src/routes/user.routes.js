@@ -8,9 +8,5 @@ userRouter.get('/', userController.getAllUsers);
 userRouter.post('/', userController.createUser);
 userRouter.post('/id', userController.findUserByID);
 
-//ajouter pour la find by id
-
-
-
 
 module.exports = userRouter;

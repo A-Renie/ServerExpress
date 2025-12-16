@@ -1,5 +1,6 @@
 const { DataSource } = require("typeorm");
 const UserSchema = require("../models/user.entity");
+const TodoSchema = require("../models/todo.entity");
 
 const AppDataSource = new DataSource({
     type: "sqlite",
@@ -12,7 +13,7 @@ const AppDataSource = new DataSource({
     logging: true,
     entities: [
         UserSchema,
-        // require("../models/todo.entity")  // a jouter plus tard
+        TodoSchema
     ],
 }); 
 
