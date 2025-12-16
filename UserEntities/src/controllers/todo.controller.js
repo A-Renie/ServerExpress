@@ -10,6 +10,11 @@ const todoController = {
     createTodo: asyncHandler(async (req, res) => {
         const createdTodo = await todoService.create(req.body);
         res.status(201).json(createdTodo);
+    }),
+
+    findTodoByID: asyncHandler(async (req, res) => {
+        const foundTodo = await todoService.findById(req.body);
+        res.status(201).json(foundTodo);
     })
 };
 

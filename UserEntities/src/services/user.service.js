@@ -7,7 +7,7 @@ class UserService {
         this.userRepository = AppDataSource.getRepository("User");
     }
     async findAll() {
-        return await this.userRepository.find()
+        return await this.userRepository.find({relations: { todos: true }})
     }
 
     async create(data) {
