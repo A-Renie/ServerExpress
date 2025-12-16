@@ -22,6 +22,12 @@ module.exports = new EntitySchema({
             target: "User",
             inverseSide: "todos",
             joinColumn: true // CRUCIAL : Crée la colonne userId
+        },
+        tags: {
+            type: "many-to-many",
+            target: "Tag",
+            inverseSide: "todos", // Le nom de la propriété en face
+            // joinTable: true //seulement sur la todo
         }
     }
 });

@@ -22,6 +22,11 @@ class UserService {
         const result = this.userRepository.findOneBy({ id: data.id })
         return result
     }
+
+    //Creer find users with pending taks avec createquerybuilder
+    // leftjoinandselect
+    //where (status)
+    //getMnay
 }
 
 module.exports = new UserService();
