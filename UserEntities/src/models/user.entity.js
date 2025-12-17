@@ -10,6 +10,8 @@ module.exports = new EntitySchema({
         name: {  type: "varchar" },
         // Champ Texte unique et obligatoire
         email: { type: "varchar", unique: true, nullable: false },
+        password: { type: "varchar", nullable: false },
+        role: { type: "varchar", default:"user"},
         // Booléen avec défaut
         isActive: { type: "boolean", default: true },
         // Dates automatiques (Magique !)

@@ -26,6 +26,11 @@ class TagService {
         return result
     }
 
+    async findByIds(data){ // a finir
+        const result = this.tagRepository.findManyBy({ id: data.id })
+        return result
+    }
+
 }
 
 module.exports = new TagService();
