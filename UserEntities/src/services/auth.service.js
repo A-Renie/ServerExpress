@@ -49,24 +49,13 @@ class AuthService {
         };
         // -> id, email, role
         // 3. Générer l'ACCESS Token (Court terme : 15 min)
-        const accessToken = jsonwebtoken.sign(
-            payload,
-            process.env.JWT_SECRET,
-            { expiresIn: "15m" }
-        );
+        const accessToken = jsonwebtoken.sign(payload,process.env.JWT_SECRET,{ expiresIn: "15m" });
         // -> Utiliser jwt.sign(payload, secret, options)
         // 4. Générer le REFRESH Token (Long terme : 7 jours)
-        const refreshToken = jsonwebtoken.sign(
-            payload,
-            process.env.JWT_SECRET,
-            { expiresIn: "7d" }
-        );
+        const refreshToken = jsonwebtoken.sign(payload,process.env.JWT_SECRET,{ expiresIn: "7d" });
         // -> Utiliser jwt.sign(payload, secret, options)
         // 5. Renvoyer les deux tokens au client (JSON)
-        return {
-            accessToken,
-            refreshToken
-        };
+        return {accessToken,refreshToken};
     }
 
 
@@ -83,33 +72,25 @@ class AuthService {
         // -> Deuxième argument : le secret
         // -> Troisième argument : le callback (err, decodedUser)
         return new Promise((resolve, reject) => {
-            jsonwebtoken.verify(
-                refreshToken,
-                process.env.JWT_SECRET,
-                (err, decodedUser) => {
-                    // 4. Token invalide
-                    if (err) {
-                        return reject(new Error("Refresh token invalide"));
-                    }
-
-                    // 5. Recréer le payload
-                    const payload = {
-                        id: decodedUser.id,
-                        email: decodedUser.email,
-                        role: decodedUser.role
-                    };
-
-                    // 6. Nouveau accessToken
-                    const newAccessToken = jsonwebtoken.sign(
-                        payload,
-                        process.env.JWT_SECRET,
-                        { expiresIn: "15m" }
-                    );
-
-                    // 7. Réponse
-                    resolve({ accessToken: newAccessToken });
+            jsonwebtoken.verify(refreshToken,process.env.JWT_SECRET,(err, decodedUser) => {
+                // 4. Token invalide
+                if (err) {
+                    return reject(new Error("Refresh token invalide"));
                 }
-            );
+
+                // 5. Recréer le payload
+                const payload = {
+                    id: decodedUser.id,
+                    email: decodedUser.email,
+                    role: decodedUser.role
+                };
+
+                // 6. Nouveau accessToken
+                const newAccessToken = jsonwebtoken.sign(payload,process.env.JWT_SECRET,{ expiresIn: "15m" });
+
+                // 7. Réponse
+                resolve({ accessToken: newAccessToken });
+            });
         });
         // jwt.verify(refreshToken, process.env.JWT_SECRET, (err, user) => {
         //     // 3. Si erreur (token invalide ou expiré) : erreur 403

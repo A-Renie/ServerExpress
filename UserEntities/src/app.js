@@ -25,8 +25,10 @@ const errorHandler = require('./errors/errorHandler');
 const app = express();
 
 //DEBUT CODE
-app.use(passport.initialize())
+app.use(helmet())
+app.use(cors())
 app.use(express.json());
+app.use(passport.initialize())
 app.use(logger);
 
 //DEFINITION ROUTES
