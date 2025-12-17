@@ -11,7 +11,7 @@ userRouter.post('/id', userController.findUserByID);
 
 
 userRouter.get('/profile', requireAuth, (req, res) => {res.json(req.user);})
-userRouter.get('/admin', requireAuth, requireRole('ADMIN'), (req, res) => {res.json({ message: "Bienvenue dans la zone secrète Admin" })})
+userRouter.get('/support', requireAuth, requireRole('SUPPORT'), (req, res) => {res.json({ message: "Bienvenue dans la zone secrète support" })})
 
 
 module.exports = userRouter;
