@@ -12,7 +12,7 @@ const requireRole = (role) => {
         // Si pas d'user (cas rare mais possible), renvoyer 401.
 
         // 2. Comparer req.user.role avec le 'role' demandé en argument
-        if (req.user.role !== "admin"){
+        if (req.user.role !== "support"){
             throw new ValidationError("Droits insuffisants") //mettre les bonnes erreurs
         } 
         // -> Si ça ne matche pas :
